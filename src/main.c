@@ -38,6 +38,23 @@ int *parse_arg_two(char *argv, int *arr_size)
 	return intarr;
 }
 
+int *parse_all_args(int argc, char **argv)
+{
+	int *intarr;
+	int i;
+
+	intarr = (int *)malloc(sizeof(int) * (argc - 1));
+	if (!intarr)
+		return NULL;
+	i = 0;
+	while (i < argc)
+	{
+		intarr[i] = ft_atoi(argv[i + 1]);
+		i++;
+	}
+	return intarr;
+}
+
 int	main(int argc, char **argv)
 {
 	int *intarr;
@@ -52,8 +69,8 @@ int	main(int argc, char **argv)
 	}
 	if (argc == 2)
 		intarr = parse_arg_two(argv[1], &arr_size);
-	// else
-	// 	intarr = parse_all_args(argc, argv);
+	else
+		intarr = parse_all_args(argc, argv);
 
 	for (int i = 0; i < arr_size; i++)
 		ft_printf("%d\n", intarr[i]);
