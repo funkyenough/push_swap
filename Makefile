@@ -13,9 +13,13 @@ ARFLAGS = rcs
 
 CC = cc
 CFLAGS = -Wall -Werror -Wextra
+CSAFE = -g -fsanitize=address
 
 RM = rm -f
 
+ifdef WITH_SAFE
+	CC += $(CSAFE)
+endif
 
 all : $(NAME)
 
@@ -28,6 +32,9 @@ $(NAME) : $(OBJS)
 
 $(SRCDIR)/%.o : $(SRCDIR)/%.c
 	$(CC) $(CFLAGS) -c $< -o $@
+
+safe :
+	make WITH_SAFE=1 all
 
 clean:
 	$(RM) $(OBJS)

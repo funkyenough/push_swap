@@ -47,7 +47,7 @@ int *parse_all_args(int argc, char **argv)
 	if (!intarr)
 		return NULL;
 	i = 0;
-	while (i < argc)
+	while (i < argc - 1)
 	{
 		intarr[i] = ft_atoi(argv[i + 1]);
 		i++;
@@ -70,7 +70,10 @@ int	main(int argc, char **argv)
 	if (argc == 2)
 		intarr = parse_arg_two(argv[1], &arr_size);
 	else
+	{
+		arr_size = argc - 1;
 		intarr = parse_all_args(argc, argv);
+	}
 
 	for (int i = 0; i < arr_size; i++)
 		ft_printf("%d\n", intarr[i]);
