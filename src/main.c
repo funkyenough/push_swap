@@ -24,13 +24,13 @@ int *parse_arg_two(char *argv, int *arr_size)
 	int i;
 
 	i = 0;
-	arr_size = str_count(argv, ' ');
+	*arr_size = str_count(argv, ' ');
 	chararr = ft_split(argv, ' ');
 	if (!chararr)
 		return NULL;
 	intarr = (int *)malloc(sizeof(int) * (*arr_size));
 
-	while (i < arr_size)
+	while (i < *arr_size)
 	{
 		intarr[i] = ft_atoi(chararr[i]);
 		i++;

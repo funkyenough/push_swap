@@ -1,8 +1,10 @@
 NAME = push_swap
 LIBFT = libft.a
+FT_PRINTF = libftprintf.a
 
 SRCDIR = ./src
 LIBFTDIR = ./libft
+FT_PRINTFDIR = ./ft_printf
 SRCS = $(wildcard ./$(SRCDIR)/*.c)
 OBJS = $(SRCS:.c=.o)
 
@@ -20,16 +22,19 @@ all : $(NAME)
 $(NAME) : $(OBJS)
 	make bonus -C $(LIBFTDIR)
 	cp $(LIBFTDIR)/$(LIBFT) .
-	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(LIBFT)
+	make -C $(FT_PRINTFDIR)
+	cp $(FT_PRINTFDIR)/$(FT_PRINTF) .
+	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(LIBFT) $(FT_PRINTF)
 
-%.o : %.c
+$(SRCDIR)/%.o : $(SRCDIR)/%.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
 	$(RM) $(OBJS)
 
 fclean: clean
-	$(RM) $(NAME) main.o
+	$(RM) $(NAME) main.o $(LIBFT) $(FT_PRINTF)
 	make fclean -C $(LIBFTDIR)
+	make fclean -C $(FT_PRINTFDIR)
 
 re: fclean all
