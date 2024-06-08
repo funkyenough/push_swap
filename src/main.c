@@ -1,5 +1,10 @@
 #include "push_swap.h"
 
+void del(void *content)
+{
+	free(content);
+}
+
 int	str_count(const char *s, char c)
 {
 	int	wordcount;
@@ -59,6 +64,7 @@ int	main(int argc, char **argv)
 {
 	int *intarr;
 	int arr_size;
+	t_list *stack;
 
 	arr_size = 0;
 	intarr = NULL;
@@ -75,7 +81,11 @@ int	main(int argc, char **argv)
 		intarr = parse_all_args(argc, argv);
 	}
 
-	for (int i = 0; i < arr_size; i++)
-		ft_printf("%d\n", intarr[i]);
+	// for (int i = 0; i < arr_size; i++)
+	// 	ft_printf("%d\n", intarr[i]);
+
+	stack = create_stack(arr_size);
+	ft_initialize_stack(intarr, stack);
+	print_stack(stack);
 	return 0;
 }
