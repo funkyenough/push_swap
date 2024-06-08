@@ -5,6 +5,7 @@ FT_PRINTF = libftprintf.a
 SRCDIR = ./src
 LIBFTDIR = ./libft
 FT_PRINTFDIR = ./ft_printf
+
 SRCS = $(wildcard ./$(SRCDIR)/*.c)
 OBJS = $(SRCS:.c=.o)
 
@@ -23,12 +24,14 @@ endif
 
 all : $(NAME)
 
-$(NAME) : $(OBJS)
+$(NAME) : libs $(OBJS)
+	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(LIBFT) $(FT_PRINTF)
+
+libs :
 	make bonus -C $(LIBFTDIR)
 	cp $(LIBFTDIR)/$(LIBFT) .
 	make -C $(FT_PRINTFDIR)
 	cp $(FT_PRINTFDIR)/$(FT_PRINTF) .
-	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(LIBFT) $(FT_PRINTF)
 
 $(SRCDIR)/%.o : $(SRCDIR)/%.c
 	$(CC) $(CFLAGS) -c $< -o $@
@@ -40,7 +43,7 @@ clean:
 	$(RM) $(OBJS)
 
 fclean: clean
-	$(RM) $(NAME) main.o $(LIBFT) $(FT_PRINTF)
+	$(RM) $(NAME) *.o $(LIBFT) $(FT_PRINTF)
 	make fclean -C $(LIBFTDIR)
 	make fclean -C $(FT_PRINTFDIR)
 
