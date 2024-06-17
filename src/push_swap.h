@@ -6,6 +6,9 @@
 # define TRUE 1
 # define FALSE 0
 
+# define INCLUDES_NON_DIGITS 4
+# define INPUT_NOT_FOUND 5
+
 typedef struct s_stack
 {
 	int				value;
@@ -27,4 +30,10 @@ void				stack_clear(t_stack **lst);
 int					stack_size(t_stack *lst);
 t_stack				*stack_new(int value);
 
+int					are_digits(char *str);
+int					has_duplicates(int arr_size, int *intarr);
+int					*parse_arg_two(char *argv, int *arr_size);
+int					*parse_all_args(int argc, char **argv);
+int					*parse_input(int argc, char **argv, int *intarr,
+						int *arr_size);
 #endif

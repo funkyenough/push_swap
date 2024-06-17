@@ -29,12 +29,13 @@ void	sort_two(t_stack *stack_a)
 
 void	sort_three(t_stack *stack_a)
 {
-	if (min_stack_value(stack_a) == (int)stack_a->value)
-	{
+	
+	// if (min_stack_value(stack_a) == (int)stack_a->value)
+	// {
 		ft_printf("min stack value: %d\n", min_stack_value(stack_a));
 		sa(stack_a);
 		ra(&stack_a);
-	}
+	// }
 	// else
 	// {
 	// 	if ()
@@ -59,9 +60,6 @@ void	sort(t_stack *stack_a)
 		if (stack_size(stack_a) == 2)
 			sort_two(stack_a);
 		if (stack_size(stack_a) == 3)
-		{
-			ft_printf("I was triggered");
 			sort_three(stack_a);
-		}
 	}
 }

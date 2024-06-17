@@ -39,7 +39,6 @@ void	ft_initialize_stack(int arr_size, int *arr, t_stack *stack)
 
 void	print_stack(t_stack *stack)
 {
-	ft_printf("Address of the stack is: %p\n", stack);
 	while (stack)
 	{
 		ft_printf("%d\n", stack->value);

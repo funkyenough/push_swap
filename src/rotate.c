@@ -14,6 +14,7 @@ void	rotate(t_stack **a)
 void	ra(t_stack **a)
 {
 	rotate(a);
+	ft_printf("ra\n");
 }
 
 void	rb(t_stack **b)
