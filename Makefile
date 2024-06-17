@@ -3,11 +3,12 @@ LIBFT = libft.a
 FT_PRINTF = libftprintf.a
 
 SRCDIR = ./src
+OBJDIR = ./obj
 LIBFTDIR = ./libft
 FT_PRINTFDIR = ./ft_printf
 
-SRCS = $(wildcard ./$(SRCDIR)/*.c)
-OBJS = $(SRCS:.c=.o)
+SRCS = $(wildcard $(SRCDIR)/*.c)
+OBJS = $(patsubst $(SRCDIR)/%.c, $(OBJDIR)/%.o, $(SRCS))
 
 AR = ar
 ARFLAGS = rcs
@@ -25,22 +26,25 @@ endif
 all : $(NAME)
 
 $(NAME) : libs $(OBJS)
-	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(LIBFT) $(FT_PRINTF)
+	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(OBJDIR)/$(LIBFT) $(OBJDIR)/$(FT_PRINTF)
 
-libs :
+libs : | $(OBJDIR)
 	make -C $(LIBFTDIR)
-	cp $(LIBFTDIR)/$(LIBFT) .
+	cp $(LIBFTDIR)/$(LIBFT) $(OBJDIR)
 	make -C $(FT_PRINTFDIR)
-	cp $(FT_PRINTFDIR)/$(FT_PRINTF) .
+	cp $(FT_PRINTFDIR)/$(FT_PRINTF) $(OBJDIR)
 
-$(SRCDIR)/%.o : $(SRCDIR)/%.c
+$(OBJDIR)/%.o : $(SRCDIR)/%.c | $(OBJDIR)
 	$(CC) $(CFLAGS) -c $< -o $@
+
+$(OBJDIR) :
+	mkdir -p $(OBJDIR)
 
 safe :
 	make WITH_SAFE=1 all
 
 clean:
-	$(RM) $(OBJS)
+	$(RM) -r $(OBJDIR)
 
 fclean: clean
 	$(RM) $(NAME) *.o $(LIBFT) $(FT_PRINTF)
