@@ -85,7 +85,7 @@ int	main(int argc, char **argv)
 	// 	ft_printf("%d\n", intarr[i]);
 
 	stack = create_stack(arr_size);
-	ft_initialize_stack(intarr, stack);
+	ft_initialize_stack(arr_size, intarr, stack);
 	print_stack(stack);
 	return 0;
 }

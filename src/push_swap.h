@@ -6,7 +6,7 @@
 
 void del(void *content);
 t_list *create_stack(int arr_size);
-void ft_initialize_stack(int *arr, t_list *stack);
+void ft_initialize_stack(int arr_size, int *arr, t_list *stack);
 void print_stack(t_list *stack);
 
 #endif

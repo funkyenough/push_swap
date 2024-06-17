@@ -24,16 +24,19 @@ t_list *create_stack(int arr_size)
 	}
 	return head;
 }
-
-void ft_initialize_stack(int *arr, t_list *stack)
+// The first element is at the top of the stack,
+// meaning that the last node has the first element of the array
+void ft_initialize_stack(int arr_size, int *arr, t_list *stack)
 {
+	arr += (arr_size - 1);
 	while(stack)
 	{
 		*((int*)stack->content) = *arr;
 		stack = stack->next;
-		arr++;
+		arr--;
 	}
 }
+
 void print_stack(t_list *stack)
 {
 	while (stack)
