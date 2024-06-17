@@ -28,7 +28,7 @@ $(NAME) : libs $(OBJS)
 	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(LIBFT) $(FT_PRINTF)
 
 libs :
-	make bonus -C $(LIBFTDIR)
+	make -C $(LIBFTDIR)
 	cp $(LIBFTDIR)/$(LIBFT) .
 	make -C $(FT_PRINTFDIR)
 	cp $(FT_PRINTFDIR)/$(FT_PRINTF) .
