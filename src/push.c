@@ -1,24 +1,27 @@
 #include "./push_swap.h"
 #include <stdio.h>
 
-void	push(t_stack **a, t_stack **b)
+void	push(t_stack **destination, t_stack **origin)
 {
-	t_stack	*node;
+	t_stack	*tmp;
 
-	if (*b)
+	if (*origin)
 	{
-		node = stack_get_tail(*b);
-		stack_add_top(a, node);
-		stack_delone(node);
+		tmp = *origin;
+		*origin = (*origin)->next;
+		tmp->next = *destination;
+		*destination = tmp;
 	}
 }
 
 void	pa(t_stack **a, t_stack **b)
 {
 	push(a, b);
+	ft_printf("pa\n");
 }
 
 void	pb(t_stack **a, t_stack **b)
 {
 	push(b, a);
+	ft_printf("pb\n");
 }
