@@ -6,6 +6,9 @@
 # define TRUE 1
 # define FALSE 0
 
+# define BEFORE 0
+# define AFTER 1
+
 # define INCLUDES_NON_DIGITS 4
 # define INPUT_NOT_FOUND 5
 
@@ -17,14 +20,15 @@ typedef struct s_stack
 }					t_stack;
 
 t_stack				*create_stack(int arr_size);
-void				ft_initialize_stack(int arr_size, int *arr, t_stack *stack);
-void				print_stack(t_stack *stack);
-void				sort(t_stack *stack_a);
-void				sa(t_stack *a);
+void				ft_initialize_stack(int *arr, t_stack *stack);
+void				print_stack(t_stack *stack, int state);
+void				sort(t_stack **stack_a);
+void				sa(t_stack **a);
 void				ra(t_stack **a);
-t_stack				*stack_last(t_stack *lst);
-void				stack_add_front(t_stack **lst, t_stack *new);
-void				stack_add_back(t_stack **lst, t_stack *new);
+void				rra(t_stack **a);
+t_stack				*stack_get_tail(t_stack *lst);
+void				stack_add_top(t_stack **lst, t_stack *new);
+void				stack_add_tail(t_stack **lst, t_stack *new);
 void				stack_delone(t_stack *lst);
 void				stack_clear(t_stack **lst);
 int					stack_size(t_stack *lst);

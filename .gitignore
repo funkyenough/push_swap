@@ -1,0 +1,7 @@
+*.o
+*.a
+push_swap
+/.vscode
+/ft_printf
+/libft
+/obj

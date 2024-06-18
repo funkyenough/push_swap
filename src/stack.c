@@ -19,29 +19,34 @@ t_stack	*create_stack(int arr_size)
 			stack_clear(&root);
 			return (NULL);
 		}
-		stack_add_front(&head, new_node);
-		head = new_node;
+		stack_add_tail(&head, new_node);
 	}
 	return (head);
 }
-// The first element is at the top of the stack,
-// meaning that the last node has the first element of the array
-void	ft_initialize_stack(int arr_size, int *arr, t_stack *stack)
+
+void	ft_initialize_stack(int *arr, t_stack *stack)
 {
-	arr += (arr_size - 1);
 	while (stack)
 	{
 		stack->value = *arr;
 		stack = stack->next;
-		arr--;
+		arr++;
 	}
 }
 
-void	print_stack(t_stack *stack)
+void	print_stack(t_stack *stack, int state)
 {
+	if (state == BEFORE)
+		ft_printf("Before sort: ");
+	else
+		ft_printf("--------------------\nAfter sort: ");
 	while (stack)
 	{
-		ft_printf("%d\n", stack->value);
+		ft_printf("%d ", stack->value);
 		stack = stack->next;
 	}
+	if (state == BEFORE)
+		ft_printf("\n--------------------\n");
+	else
+		ft_printf("\n\nLeaks:\n");
 }

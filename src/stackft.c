@@ -1,14 +1,14 @@
 #include "./push_swap.h"
 
-void	stack_add_back(t_stack **lst, t_stack *new)
+void	stack_add_tail(t_stack **lst, t_stack *new)
 {
 	if (*lst == NULL)
 		*lst = new;
 	else if (lst != NULL && new != NULL)
-		stack_last(*lst)->next = new;
+		stack_get_tail(*lst)->next = new;
 }
 
-void	stack_add_front(t_stack **lst, t_stack *new)
+void	stack_add_top(t_stack **lst, t_stack *new)
 {
 	new->next = *lst;
 	*lst = new;
@@ -21,7 +21,7 @@ void	stack_delone(t_stack *lst)
 	free(lst);
 }
 
-t_stack	*stack_last(t_stack *lst)
+t_stack	*stack_get_tail(t_stack *lst)
 {
 	if (lst != NULL)
 	{
