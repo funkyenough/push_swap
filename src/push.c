@@ -7,8 +7,8 @@ void	push(t_stack **a, t_stack **b)
 
 	if (*b)
 	{
-		node = stack_last(*b);
-		stack_add_front(a, node);
+		node = stack_get_tail(*b);
+		stack_add_top(a, node);
 		stack_delone(node);
 	}
 }

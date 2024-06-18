@@ -8,7 +8,8 @@ void	rotate(t_stack **a)
 		return ;
 	new_node = *a;
 	*a = (*a)->next;
-	stack_add_back(a, new_node);
+	new_node->next = NULL;
+	stack_add_tail(a, new_node);
 }
 
 void	ra(t_stack **a)
