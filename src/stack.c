@@ -24,7 +24,7 @@ t_stack	*create_stack(int arr_size)
 	return (head);
 }
 
-void	ft_initialize_stack(int *arr, t_stack *stack)
+void	initialize_stack(int *arr, t_stack *stack)
 {
 	while (stack)
 	{
@@ -37,9 +37,11 @@ void	ft_initialize_stack(int *arr, t_stack *stack)
 void	print_stack(t_stack *stack, int state)
 {
 	if (state == BEFORE)
-		ft_printf("Before sort: ");
+		ft_printf("Before sort:\n");
+	else if (state == AFTER)
+		ft_printf("--------------------\nAfter sort:\n");
 	else
-		ft_printf("--------------------\nAfter sort: ");
+		ft_printf("\n");
 	while (stack)
 	{
 		ft_printf("%d ", stack->value);
@@ -47,6 +49,26 @@ void	print_stack(t_stack *stack, int state)
 	}
 	if (state == BEFORE)
 		ft_printf("\n--------------------\n");
-	else
+	else if (state == AFTER)
 		ft_printf("\n\nLeaks:\n");
+	else
+		ft_printf("\n");
+}
+
+void	print_stacks(t_stack *stack_a, t_stack *stack_b)
+{
+	ft_printf("stack_a: ");
+	while (stack_a)
+	{
+		ft_printf("%d ", stack_a->value);
+		stack_a = stack_a->next;
+	}
+	ft_printf("\n");
+	ft_printf("stack_b: ");
+	while (stack_b)
+	{
+		ft_printf("%d ", stack_b->value);
+		stack_b = stack_b->next;
+	}
+	ft_printf("\n\n");
 }
