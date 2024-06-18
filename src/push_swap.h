@@ -6,7 +6,7 @@
 /*   By: yinhong <yinhong@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 17:03:32 by yinhong           #+#    #+#             */
-/*   Updated: 2024/06/18 17:05:49 by yinhong          ###   ########.fr       */
+/*   Updated: 2024/06/18 20:00:53 by yinhong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,15 +61,19 @@ int					are_digits(char *str);
 int					has_duplicates(int arr_size, int *intarr);
 
 // -------------------------------- OPCODES -------------------------------- //
-void				sa(t_stack **a);
-void				sb(t_stack **a);
-void				ss(t_stack **a);
-void				ra(t_stack **a);
-void				rb(t_stack **a);
-void				rr(t_stack **a);
-void				rra(t_stack **a);
-void				rrb(t_stack **a);
-void				rrr(t_stack **a);
-void				pa(t_stack **a, t_stack **b);
-void				pb(t_stack **a, t_stack **b);
+void				sa(t_stack **stack);
+void				sb(t_stack **stack);
+void				ss(t_stack **a, t_stack **b);
+
+void				ra(t_stack **stack);
+void				rb(t_stack **stack);
+void				rr(t_stack **a, t_stack **b);
+
+void				rra(t_stack **stack);
+void				rrb(t_stack **stack);
+void				rrr(t_stack **a, t_stack **b);
+
+void				pa(t_stack **stack_a, t_stack **stack_b);
+void				pb(t_stack **stack_a, t_stack **stack_b);
+
 #endif

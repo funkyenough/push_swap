@@ -1,30 +1,42 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yinhong <yinhong@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/18 20:00:50 by yinhong           #+#    #+#             */
+/*   Updated: 2024/06/18 20:00:50 by yinhong          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "./push_swap.h"
 #define ARR_SIZE 10
 
 // After sort, the first node of the stack should have the smallest number,
 // and the last node should have the largest.
 
-// int	main(int argc, char **argv)
-// {
-// 	int		*intarr;
-// 	int		arr_size;
-// 	t_stack	*stack;
+int	main(int argc, char **argv)
+{
+	int		*intarr;
+	int		arr_size;
+	t_stack	*stack;
 
-// 	arr_size = 0;
-// 	intarr = NULL;
-// 	intarr = parse_input(argc, argv, intarr, &arr_size);
-// 	if (has_duplicates(arr_size, intarr))
-// 	{
-// 		// ft_printf("Error: Array has duplicates.\n");
-// 		return (1);
-// 	}
-// 	stack = create_stack(arr_size);
-// 	initialize_stack(intarr, stack);
-// 	sort(&stack);
-// 	stack_clear(&stack);
-// 	free(intarr);
-// 	return (0);
-// }
+	arr_size = 0;
+	intarr = NULL;
+	intarr = parse_input(argc, argv, intarr, &arr_size);
+	if (has_duplicates(arr_size, intarr))
+	{
+		// ft_printf("Error: Array has duplicates.\n");
+		return (1);
+	}
+	stack = create_stack(arr_size);
+	initialize_stack(intarr, stack);
+	sort(&stack);
+	stack_clear(&stack);
+	free(intarr);
+	return (0);
+}
 
 // Test for get_digit
 // int	main(void)
