@@ -1,9 +1,59 @@
 #include "push_swap.h"
 
-// radix_sort (t_stack *stack_a, t_stack *stack_b)
-// {
+void	radix_sort(t_stack **stack_a)
+{
+	int		max;
+	int		max_bits;
+	int		current_bit;
+	t_stack	*stack_b;
 
-// }
+	max = max_stack_value(*stack_a);
+	max_bits = count_bits(max);
+	current_bit = max_bits;
+	while (*stack_a)
+	{
+		if (get_bit((*stack_a)->value, current_bit) == 0)
+			pb(stack_a, &stack_b);
+		else
+			ra(stack_a);
+		*stack_a = (*stack_a)->next;
+		ft_printf("Current top address:%p\n", stack_a);
+	}
+	stack_clear(stack_a);
+	stack_clear(&stack_b);
+}
+int	count_bits(int i)
+{
+	int	bits;
+
+	bits = 0;
+	while (i)
+	{
+		i /= 2;
+		bits++;
+	}
+	return (bits);
+}
+
+int	get_bit(int i, int bit_requested)
+{
+	return ((i >> bit_requested) & 1);
+}
+
+int	max_stack_value(t_stack *stack)
+{
+	int	max;
+
+	max = stack->value;
+	stack = stack->next;
+	while (stack)
+	{
+		if (stack->value > max)
+			max = stack->value;
+		stack = stack->next;
+	}
+	return (max);
+}
 
 int	min_stack_value(t_stack *stack)
 {
@@ -17,7 +67,6 @@ int	min_stack_value(t_stack *stack)
 			min = stack->value;
 		stack = stack->next;
 	}
-	// ft_printf("min is: %d\n", min);
 	return (min);
 }
 
@@ -78,6 +127,8 @@ void	sort(t_stack **stack)
 			sort_two(stack);
 		if (stack_size(*stack) == 3)
 			sort_three(stack);
+		else
+			radix_sort(stack);
 	}
 	print_stack(*stack, AFTER);
 }
