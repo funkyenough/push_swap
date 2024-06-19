@@ -6,7 +6,7 @@
 /*   By: yinhong <yinhong@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 20:01:19 by yinhong           #+#    #+#             */
-/*   Updated: 2024/06/18 20:01:19 by yinhong          ###   ########.fr       */
+/*   Updated: 2024/06/19 11:12:35 by yinhong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	are_digits(char *str)
 {
 	while (*str)
 	{
-		if (!ft_isdigit(*str))
+		if (!ft_isdigit(*str) && *str != ' ' && *str != '-')
 			return (FALSE);
 		str++;
 	}
