@@ -6,7 +6,7 @@
 /*   By: yinhong <yinhong@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 20:00:50 by yinhong           #+#    #+#             */
-/*   Updated: 2024/06/18 20:00:50 by yinhong          ###   ########.fr       */
+/*   Updated: 2024/06/19 09:59:28 by yinhong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ int	main(int argc, char **argv)
 // 	stack_clear(&stack_b);
 // }
 
-__attribute__((destructor)) static void destructor()
-{
-	system("leaks -q push_swap");
-}
+// __attribute__((destructor)) static void destructor()
+// {
+// 	system("leaks -q push_swap");
+// }

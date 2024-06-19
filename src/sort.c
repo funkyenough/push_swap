@@ -6,33 +6,44 @@
 /*   By: yinhong <yinhong@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 20:01:03 by yinhong           #+#    #+#             */
-/*   Updated: 2024/06/18 20:01:04 by yinhong          ###   ########.fr       */
+/*   Updated: 2024/06/19 09:58:43 by yinhong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	radix_sort(t_stack **stack_a)
+void	radix_sort(t_stack **stack_a, t_stack **stack_b)
 {
 	int		max;
 	int		max_bits;
 	int		current_bit;
-	t_stack	*stack_b;
+	t_stack	*first;
 
+	first = NULL;
 	max = max_stack_value(*stack_a);
 	max_bits = count_bits(max);
-	current_bit = max_bits;
-	while (*stack_a)
+	current_bit = 0;
+	while (current_bit < max_bits)
 	{
-		if (get_bit((*stack_a)->value, current_bit) == 0)
-			pb(stack_a, &stack_b);
-		else
-			ra(stack_a);
-		*stack_a = (*stack_a)->next;
-		ft_printf("Current top address:%p\n", stack_a);
+		while (1)
+		{
+			if (*stack_a == first)
+				break ;
+			if (get_bit((*stack_a)->value, current_bit) == 0)
+				pb(stack_a, stack_b);
+			else
+			{
+				if (first == NULL)
+					first = *stack_a;
+				ra(stack_a);
+			}
+			// ft_printf("Current stack_a address:%p\n", *stack_a);
+		}
+		while (*stack_b)
+			pa(stack_a, stack_b);
+		first = NULL;
+		current_bit++;
 	}
-	stack_clear(stack_a);
-	stack_clear(&stack_b);
 }
 int	count_bits(int i)
 {
@@ -130,17 +141,25 @@ int	is_sorted(t_stack *stack)
 	return (TRUE);
 }
 
-void	sort(t_stack **stack)
+void	sort(t_stack **stack_a)
 {
-	print_stack(*stack, BEFORE);
-	if (!is_sorted(*stack))
+	t_stack *stack_b;
+
+	stack_b = NULL;
+	// print_stacks(*stack_a, stack_b);
+	if (!is_sorted(*stack_a))
 	{
-		if (stack_size(*stack) == 2)
-			sort_two(stack);
-		if (stack_size(*stack) == 3)
-			sort_three(stack);
+		if (stack_size(*stack_a) == 2)
+			sort_two(stack_a);
+		if (stack_size(*stack_a) == 3)
+			sort_three(stack_a);
 		else
-			radix_sort(stack);
+			radix_sort(stack_a, &stack_b);
 	}
-	print_stack(*stack, AFTER);
+	// print_stacks(*stack_a, stack_b);
+
+	if (stack_a)
+		stack_clear(stack_a);
+	if (stack_b)
+		stack_clear(&stack_b);
 }
