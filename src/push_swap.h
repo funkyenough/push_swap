@@ -33,10 +33,13 @@ typedef struct s_stack
 	struct s_stack	*next;
 }					t_stack;
 
-int					max_stack_value(t_stack *stack);
+int					stack_max_value(t_stack *stack);
 int					count_bits(int i);
 int					get_bit(int i, int bit_requested);
 void				sort(t_stack **stack);
+void				sort_three(t_stack **stack);
+void				quicksort(t_stack **a, t_stack **b, int size);
+void				sort_small(t_stack **a, t_stack **b);
 
 // ------------------------------- STACKUTILS -------------------------------//
 

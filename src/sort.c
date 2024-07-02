@@ -12,39 +12,39 @@
 
 #include "push_swap.h"
 
-void	radix_sort(t_stack **stack_a, t_stack **stack_b)
-{
-	int		max;
-	int		max_bits;
-	int		current_bit;
-	t_stack	*first;
+// void	radix_sort(t_stack **stack_a, t_stack **stack_b)
+// {
+// 	int		max;
+// 	int		max_bits;
+// 	int		current_bit;
+// 	t_stack	*first;
 
-	first = NULL;
-	max = max_stack_value(*stack_a);
-	max_bits = count_bits(max);
-	current_bit = 0;
-	while (current_bit < max_bits)
-	{
-		while (1)
-		{
-			if (*stack_a == first)
-				break ;
-			if (get_bit((*stack_a)->value, current_bit) == 0)
-				pb(stack_a, stack_b);
-			else
-			{
-				if (first == NULL)
-					first = *stack_a;
-				ra(stack_a);
-			}
-			// ft_printf("Current stack_a address:%p\n", *stack_a);
-		}
-		while (*stack_b)
-			pa(stack_a, stack_b);
-		first = NULL;
-		current_bit++;
-	}
-}
+// 	first = NULL;
+// 	max = stack_max_value(*stack_a);
+// 	max_bits = count_bits(max);
+// 	current_bit = 0;
+// 	while (current_bit < max_bits)
+// 	{
+// 		while (1)
+// 		{
+// 			if (*stack_a == first)
+// 				break ;
+// 			if (get_bit((*stack_a)->value, current_bit) == 0)
+// 				pb(stack_a, stack_b);
+// 			else
+// 			{
+// 				if (first == NULL)
+// 					first = *stack_a;
+// 				ra(stack_a);
+// 			}
+// 			// ft_printf("Current stack_a address:%p\n", *stack_a);
+// 		}
+// 		while (*stack_b)
+// 			pa(stack_a, stack_b);
+// 		first = NULL;
+// 		current_bit++;
+// 	}
+// }
 int	count_bits(int i)
 {
 	int	bits;
@@ -63,7 +63,7 @@ int	get_bit(int i, int bit_requested)
 	return ((i >> bit_requested) & 1);
 }
 
-int	max_stack_value(t_stack *stack)
+int	stack_max_value(t_stack *stack)
 {
 	int	max;
 
@@ -78,7 +78,7 @@ int	max_stack_value(t_stack *stack)
 	return (max);
 }
 
-int	min_stack_value(t_stack *stack)
+int	stack_min_value(t_stack *stack)
 {
 	int	min;
 
@@ -106,12 +106,12 @@ void	sort_three(t_stack **stack)
 
 	second = (*stack)->next;
 	third = (*stack)->next->next;
-	if (min_stack_value(*stack) == (*stack)->value)
+	if (stack_min_value(*stack) == (*stack)->value)
 	{
 		sa(stack);
 		ra(stack);
 	}
-	else if (min_stack_value(*stack) == second->value)
+	else if (stack_min_value(*stack) == second->value)
 	{
 		if ((*stack)->value > third->value)
 			ra(stack);
@@ -128,6 +128,57 @@ void	sort_three(t_stack **stack)
 		else
 			rra(stack);
 	}
+}
+
+int	find_value_position(t_stack **stack, int value)
+{
+	int	position;
+
+	position = 0;
+	while (*stack)
+	{
+		if ((*stack)->value == value)
+			return (position);
+		position++;
+		*stack = (*stack)->next;
+	}
+	return (position);
+}
+
+void	sort_four(t_stack **a, t_stack **b)
+{
+	int	smallest;
+	int	position;
+
+	smallest = stack_min_value(*a);
+	position = find_value_position(a, smallest);
+	if (position == 1)
+		sa(a);
+	else if (position == 2)
+	{
+		ra(a);
+		ra(a);
+	}
+	else if (position == 3)
+		rra(a);
+	pb(a, b);
+	sort_three(a);
+	pa(a, b);
+}
+
+void	sort_small(t_stack **a, t_stack **b)
+{
+	int	size;
+
+	size = stack_size(*a);
+	if (size == 1)
+		return ;
+	if (size == 2)
+		sort_two(a);
+	if (size == 3)
+		sort_three(a);
+	if (size == 4)
+		sort_four(a, b);
 }
 
 int	is_sorted(t_stack *stack)
@@ -149,17 +200,16 @@ void	sort(t_stack **stack_a)
 	// print_stacks(*stack_a, stack_b);
 	if (!is_sorted(*stack_a))
 	{
-		if (stack_size(*stack_a) == 2)
-			sort_two(stack_a);
-		if (stack_size(*stack_a) == 3)
-			sort_three(stack_a);
+		if (stack_size(*stack_a) < 5)
+			sort_small(stack_a, &stack_b);
 		else
-			radix_sort(stack_a, &stack_b);
+			// radix_sort(stack_a, &stack_b);
+			quicksort(stack_a, &stack_b, stack_size(*stack_a));
 	}
 	// print_stacks(*stack_a, stack_b);
 
-	if (stack_a)
-		stack_clear(stack_a);
-	if (stack_b)
-		stack_clear(&stack_b);
+	// if (stack_a)
+	// 	stack_clear(stack_a);
+	// if (stack_b)
+	// 	stack_clear(&stack_b);
 }
