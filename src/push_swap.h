@@ -6,7 +6,7 @@
 /*   By: yinhong <yinhong@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 17:03:32 by yinhong           #+#    #+#             */
-/*   Updated: 2024/06/18 20:00:53 by yinhong          ###   ########.fr       */
+/*   Updated: 2024/07/03 22:04:49 by yinhong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,8 @@ int					get_bit(int i, int bit_requested);
 void				sort(t_stack **stack);
 void				sort_three(t_stack **stack);
 void				quicksort(t_stack **a, t_stack **b, int size);
-void				sort_small(t_stack **a, t_stack **b);
+void				sort_small(t_stack **a);
+int *get_index(int *intarr, int size);
 
 // ------------------------------- STACKUTILS -------------------------------//
 

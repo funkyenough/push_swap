@@ -1,10 +1,12 @@
 #include "push_swap.h"
 
-int	partition(t_stack **a, t_stack **b, int size, int pivot)
+int	partition(t_stack **a, t_stack **b, int size)
 {
+	int pivot;
 	int	element;
 	int	i;
 
+	pivot = (*a)->value;
 	element = 0;
 	i = 0;
 	while (i < size)
@@ -62,12 +64,12 @@ void	quicksort(t_stack **a, t_stack **b, int size)
 	if (size <= 3)
 	{
 		ft_printf("Sorting small stack (size <= 3)\n");
-		sort_small(a, b);
+		sort_small(a);
 		return ;
 	}
 	pivot = choose_pivot(a);
 	ft_printf("Chosen pivot: %d\n", pivot);
-	element = partition(a, b, size, pivot);
+	element = partition(a, b, size);
 	ft_printf("Partitioned %d elements\n", element);
 	quicksort(a, b, element);
 	quicksort(a, b, size - element - 1);

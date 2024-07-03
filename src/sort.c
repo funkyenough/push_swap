@@ -6,7 +6,7 @@
 /*   By: yinhong <yinhong@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 20:01:03 by yinhong           #+#    #+#             */
-/*   Updated: 2024/06/19 09:58:43 by yinhong          ###   ########.fr       */
+/*   Updated: 2024/07/03 00:21:33 by yinhong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,25 +133,23 @@ void	sort_three(t_stack **stack)
 int	find_value_position(t_stack **stack, int value)
 {
 	int	position;
+	t_stack *temp;
+
+	temp = *stack;
 
 	position = 0;
-	while (*stack)
+	while (temp)
 	{
-		if ((*stack)->value == value)
+		if (temp->value == value)
 			return (position);
 		position++;
-		*stack = (*stack)->next;
+		temp = temp->next;
 	}
 	return (position);
 }
 
-void	sort_four(t_stack **a, t_stack **b)
+void	push_min(t_stack **a, t_stack **b, int position)
 {
-	int	smallest;
-	int	position;
-
-	smallest = stack_min_value(*a);
-	position = find_value_position(a, smallest);
 	if (position == 1)
 		sa(a);
 	else if (position == 2)
@@ -160,25 +158,49 @@ void	sort_four(t_stack **a, t_stack **b)
 		ra(a);
 	}
 	else if (position == 3)
+	{
+		ra(a);
+		ra(a);
+		ra(a);
+	}
+	else if (position == 4)
 		rra(a);
 	pb(a, b);
+}
+void	sort_four(t_stack **a, t_stack **b)
+{
+	int	position;
+
+	position = find_value_position(a, stack_min_value(*a));
+	push_min(a, b, position);
 	sort_three(a);
 	pa(a, b);
 }
 
-void	sort_small(t_stack **a, t_stack **b)
+void	sort_five(t_stack **a, t_stack **b)
+{
+	int	position;
+
+	position = find_value_position(a, stack_min_value(*a));
+	push_min(a, b, position);
+	sort_four(a, b);
+	pa(a, b);
+}
+
+void	sort_small(t_stack **a)
 {
 	int	size;
 
 	size = stack_size(*a);
-	if (size == 1)
-		return ;
 	if (size == 2)
 		sort_two(a);
 	if (size == 3)
 		sort_three(a);
-	if (size == 4)
-		sort_four(a, b);
+	// if (size == 4)
+	// 	sort_four(a, b);
+	// if (size == 5)
+	// 	sort_five(a, b);
+	return ;
 }
 
 int	is_sorted(t_stack *stack)
@@ -200,8 +222,8 @@ void	sort(t_stack **stack_a)
 	// print_stacks(*stack_a, stack_b);
 	if (!is_sorted(*stack_a))
 	{
-		if (stack_size(*stack_a) < 5)
-			sort_small(stack_a, &stack_b);
+		if (stack_size(*stack_a) < 3)
+			sort_small(stack_a);
 		else
 			// radix_sort(stack_a, &stack_b);
 			quicksort(stack_a, &stack_b, stack_size(*stack_a));
