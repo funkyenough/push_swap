@@ -6,11 +6,11 @@
 /*   By: yinhong <yinhong@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 20:00:55 by yinhong           #+#    #+#             */
-/*   Updated: 2024/06/18 20:00:56 by yinhong          ###   ########.fr       */
+/*   Updated: 2024/07/06 12:01:25 by yinhong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./push_swap.h"
+#include "../push_swap.h"
 #include <stdio.h>
 
 void	push(t_stack **destination, t_stack **origin)

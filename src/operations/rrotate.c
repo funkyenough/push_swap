@@ -6,11 +6,11 @@
 /*   By: yinhong <yinhong@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 20:01:00 by yinhong           #+#    #+#             */
-/*   Updated: 2024/06/18 20:01:01 by yinhong          ###   ########.fr       */
+/*   Updated: 2024/07/06 12:01:32 by yinhong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./push_swap.h"
+#include "../push_swap.h"
 
 void	rrotate(t_stack **a)
 {
