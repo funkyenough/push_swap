@@ -30,34 +30,37 @@ int	stack_min_value(t_stack *stack)
 	return (min);
 }
 
-void	sort_two(t_stack **stack)
-{
-	if ((*stack)->value > (*stack)->next->value)
-		sa(stack);
-}
-
 void	sort_three(t_stack **stack)
 {
-	t_stack	*second;
-	t_stack	*third;
+	int first;
+	int	second;
+	int	third;
 
-	second = (*stack)->next;
-	third = (*stack)->next->next;
-	if (stack_min_value(*stack) == (*stack)->value)
+	// ft_printf("sort_three called\n");
+	// print_stack(*stack, BEFORE);
+
+	first = (*stack)->value;
+	second = (*stack)->next->value;
+	third = (*stack)->next->next->value;
+	if (stack_min_value(*stack) == first)
 	{
-		sa(stack);
-		ra(stack);
+		if (second < third)
+			return;
+		else {
+			sa(stack);
+			ra(stack);
+		}
 	}
-	else if (stack_min_value(*stack) == second->value)
+	else if (stack_min_value(*stack) == second)
 	{
-		if ((*stack)->value > third->value)
+		if (first > third)
 			ra(stack);
 		else
 			sa(stack);
 	}
 	else
 	{
-		if ((*stack)->value > second->value)
+		if (first > second)
 		{
 			sa(stack);
 			rra(stack);
@@ -109,6 +112,8 @@ void	sort_four(t_stack **a, t_stack **b)
 	int	position;
 
 	position = find_value_position(a, stack_min_value(*a));
+	// ft_printf("sort_four called\n");
+
 	push_min(a, b, position);
 	sort_three(a);
 	pa(a, b);
@@ -119,24 +124,23 @@ void	sort_five(t_stack **a, t_stack **b)
 	int	position;
 
 	position = find_value_position(a, stack_min_value(*a));
+	// ft_printf("sort_five called\n");
 	push_min(a, b, position);
 	sort_four(a, b);
 	pa(a, b);
 }
 
-void	sort_small(t_stack **a)
+void	sort_small(t_stack **a, t_stack **b)
 {
 	int	size;
 
 	size = stack_size(*a);
-	if (size == 2)
-		sort_two(a);
 	if (size == 3)
 		sort_three(a);
-	// if (size == 4)
-	// 	sort_four(a, b);
-	// if (size == 5)
-	// 	sort_five(a, b);
+	else if (size == 4)
+		sort_four(a, b);
+	else if (size == 5)
+		sort_five(a, b);
 	return ;
 }
 
@@ -159,11 +163,11 @@ void	sort(t_stack **stack_a)
 	// print_stacks(*stack_a, stack_b);
 	if (!is_sorted(*stack_a))
 	{
-		// if (stack_size(*stack_a) < 3)
-			// sort_small(stack_a, &stack_b);
-		// else
-		// 	radix_sort(stack_a, &stack_b);
-			quicksort(stack_a, &stack_b, stack_size(*stack_a));
+		if (stack_size(*stack_a) <= 5)
+			sort_small(stack_a, &stack_b);
+		else
+			radix_sort(stack_a, &stack_b);
+			// quicksort(stack_a, &stack_b, stack_size(*stack_a));
 	}
 	// print_stacks(*stack_a, stack_b);
 
