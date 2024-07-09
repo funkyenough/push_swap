@@ -6,7 +6,7 @@
 #    By: yinhong <yinhong@student.42tokyo.jp>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/18 20:01:16 by yinhong           #+#    #+#              #
-#    Updated: 2024/07/07 09:36:49 by yinhong          ###   ########.fr        #
+#    Updated: 2024/07/09 14:44:48 by yinhong          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,7 +36,6 @@ ifdef WITH_SAFE
 endif
 
 all : $(NAME)
-	cp $(NAME) ./push_swap_visualizer
 
 $(NAME) : libs $(OBJS)
 	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(OBJDIR)/$(LIBFT) $(OBJDIR)/$(FT_PRINTF)
