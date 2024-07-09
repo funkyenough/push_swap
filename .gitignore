@@ -2,8 +2,6 @@
 *.a
 push_swap
 /.vscode
-/ft_printf
-/libft
 /obj
 checker_Mac
 result.txt
