@@ -15,11 +15,6 @@ int partition(t_stack **a, t_stack **b, int size, int pivot)
         else
             ra(a);
     }
-
-    // Rotate back the elements that were not moved
-    for (i = 0; i < size - elements_moved; i++)
-        rra(a);
-
     return elements_moved;
 }
 
@@ -60,38 +55,18 @@ void quicksort(t_stack **a, t_stack **b, int size)
     int pivot;
     int elements_moved;
 
-    ft_printf("\n--- Quicksort called ---\n");
-    ft_printf("Stack A: ");
-    print_stack(*a, NONE);
-    ft_printf("Stack B: ");
-    print_stack(*b, NONE);
-    ft_printf("Size: %d\n", size);
-
     if (size <= 1)
         return;
 
     if (size <= 3)
     {
-        ft_printf("Sorting small stack (size <= 3)\n");
-        sort_small(a);
-        ft_printf("After sort_small:\n");
-        ft_printf("Stack A: ");
-        print_stack(*a, NONE);
-        ft_printf("Stack B: ");
-        print_stack(*b, NONE);
+        sort_small(a, b);
         return;
     }
 
     pivot = choose_pivot(a);
-    ft_printf("Chosen pivot: %d\n", pivot);
 
     elements_moved = partition(a, b, size, pivot);
-    ft_printf("Partitioned %d elements\n", elements_moved);
-    ft_printf("After partition:\n");
-    ft_printf("Stack A: ");
-    print_stack(*a, NONE);
-    ft_printf("Stack B: ");
-    print_stack(*b, NONE);
 
     // Sort the smaller partition (in B)
     quicksort(b, a, elements_moved);
@@ -102,11 +77,4 @@ void quicksort(t_stack **a, t_stack **b, int size)
     // Move sorted elements from B back to A
     while (elements_moved--)
         pa(a, b);
-
-    ft_printf("Quicksort completed for this call\n");
-    ft_printf("Final state:\n");
-    ft_printf("Stack A: ");
-    print_stack(*a, NONE);
-    ft_printf("Stack B: ");
-    print_stack(*b, NONE);
 }

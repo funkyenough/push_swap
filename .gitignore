@@ -7,3 +7,4 @@ push_swap
 /obj
 checker_Mac
 result.txt
+src/ft_atoi_exit.c

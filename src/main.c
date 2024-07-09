@@ -6,7 +6,7 @@
 /*   By: yinhong <yinhong@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 20:00:50 by yinhong           #+#    #+#             */
-/*   Updated: 2024/07/03 22:05:24 by yinhong          ###   ########.fr       */
+/*   Updated: 2024/07/07 17:59:26 by yinhong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,10 @@ int	main(int argc, char **argv)
 	arr_size = 0;
 	intarr = NULL;
 	intarr = parse_input(argc, argv, intarr, &arr_size);
+	// for (int i = 0; i < arr_size; i++) {
+	// 	ft_printf("%d ", intarr[i]);
+	// }
+	// ft_printf("\n");
 	if (has_duplicates(arr_size, intarr))
 	{
 		// ft_printf("Error: Array has duplicates.\n");
@@ -35,6 +39,7 @@ int	main(int argc, char **argv)
 	stack = create_stack(arr_size);
 	initialize_stack(index, stack);
 	sort(&stack);
+	// print_stack(stack, AFTER);
 	stack_clear(&stack);
 	free(intarr);
 	free(index);

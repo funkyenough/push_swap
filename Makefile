@@ -6,7 +6,7 @@
 #    By: yinhong <yinhong@student.42tokyo.jp>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/18 20:01:16 by yinhong           #+#    #+#              #
-#    Updated: 2024/06/18 20:01:16 by yinhong          ###   ########.fr        #
+#    Updated: 2024/07/07 09:36:49 by yinhong          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ OBJDIR = ./obj
 LIBFTDIR = ./libft
 FT_PRINTFDIR = ./ft_printf
 
-SRCS = $(wildcard $(SRCDIR)/*.c)
+SRCS = $(shell find $(SRCDIR) -type f -name '*.c')
 OBJS = $(patsubst $(SRCDIR)/%.c, $(OBJDIR)/%.o, $(SRCS))
 
 AR = ar
@@ -36,6 +36,7 @@ ifdef WITH_SAFE
 endif
 
 all : $(NAME)
+	cp $(NAME) ./push_swap_visualizer
 
 $(NAME) : libs $(OBJS)
 	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(OBJDIR)/$(LIBFT) $(OBJDIR)/$(FT_PRINTF)
@@ -47,6 +48,7 @@ libs : | $(OBJDIR)
 	cp $(FT_PRINTFDIR)/$(FT_PRINTF) $(OBJDIR)
 
 $(OBJDIR)/%.o : $(SRCDIR)/%.c | $(OBJDIR)
+	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 $(OBJDIR) :

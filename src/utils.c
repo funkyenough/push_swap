@@ -1,6 +1,6 @@
 #include "push_swap.h"
 
-void	swap(int *a, int *b)
+void	swap_array(int *a, int *b)
 {
 	int c;
 	c = *a;
@@ -31,7 +31,7 @@ int *arrange_index(int *intarr, int size)
 		while (j < size)
 		{
 			if (tmp[i] > tmp[j])
-				swap(&tmp[i], &tmp[j]);
+				swap_array(&tmp[i], &tmp[j]);
 			j++;
 		}
 		i++;
@@ -74,46 +74,46 @@ int *get_index(int *intarr, int size)
 	return index;
 }
 
-int main() {
-    int intarr[] = {5, 3, 1, 4, 2};
-    int size = sizeof(intarr) / sizeof(intarr[0]);
-    int *sorted;
-    int *index;
-    int i;
+// int main() {
+//     int intarr[] = {5, 3, 1, 4, 2};
+//     int size = sizeof(intarr) / sizeof(intarr[0]);
+//     int *sorted;
+//     int *index;
+//     int i;
 
-    ft_printf("Original array:\n");
-    for (i = 0; i < size; i++) {
-        ft_printf("%d ", intarr[i]);
-    }
-    ft_printf("\n");
+//     ft_printf("Original array:\n");
+//     for (i = 0; i < size; i++) {
+//         ft_printf("%d ", intarr[i]);
+//     }
+//     ft_printf("\n");
 
-    sorted = arrange_index(intarr, size);
-    if (sorted == NULL) {
-        ft_printf("Failed to sort the array.\n");
-        return 1;
-    }
+//     sorted = arrange_index(intarr, size);
+//     if (sorted == NULL) {
+//         ft_printf("Failed to sort the array.\n");
+//         return 1;
+//     }
 
-    ft_printf("Sorted array:\n");
-    for (i = 0; i < size; i++) {
-        ft_printf("%d ", sorted[i]);
-    }
-    ft_printf("\n");
+//     ft_printf("Sorted array:\n");
+//     for (i = 0; i < size; i++) {
+//         ft_printf("%d ", sorted[i]);
+//     }
+//     ft_printf("\n");
 
-    index = get_index(intarr, size);
-    if (index == NULL) {
-        ft_printf("Failed to get index array.\n");
-        free(sorted); // Clean up allocated memory
-        return 1;
-    }
+//     index = get_index(intarr, size);
+//     if (index == NULL) {
+//         ft_printf("Failed to get index array.\n");
+//         free(sorted); // Clean up allocated memory
+//         return 1;
+//     }
 
-    ft_printf("Index array:\n");
-    for (i = 0; i < size; i++) {
-        ft_printf("%d ", index[i]);
-    }
-    ft_printf("\n");
+//     ft_printf("Index array:\n");
+//     for (i = 0; i < size; i++) {
+//         ft_printf("%d ", index[i]);
+//     }
+//     ft_printf("\n");
 
-    free(sorted); // Clean up allocated memory
-    free(index); // Clean up allocated memory
+//     free(sorted); // Clean up allocated memory
+//     free(index); // Clean up allocated memory
 
-    return 0;
-}
+//     return 0;
+// }

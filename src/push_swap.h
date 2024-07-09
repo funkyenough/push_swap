@@ -6,7 +6,7 @@
 /*   By: yinhong <yinhong@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 17:03:32 by yinhong           #+#    #+#             */
-/*   Updated: 2024/07/03 22:04:49 by yinhong          ###   ########.fr       */
+/*   Updated: 2024/07/07 10:49:19 by yinhong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,15 +33,15 @@ typedef struct s_stack
 	struct s_stack	*next;
 }					t_stack;
 
-int					stack_max_value(t_stack *stack);
-int					count_bits(int i);
+int count_bits(unsigned int num);
 int					get_bit(int i, int bit_requested);
 void				sort(t_stack **stack);
+void				sort_small(t_stack **a, t_stack **b);
 void				sort_three(t_stack **stack);
 void				quicksort(t_stack **a, t_stack **b, int size);
-void				sort_small(t_stack **a);
-int *get_index(int *intarr, int size);
-
+void				radix_sort(t_stack **stack_a, t_stack **stack_b);
+int					*get_index(int *intarr, int size);
+void				sort(t_stack **stack_a);
 // ------------------------------- STACKUTILS -------------------------------//
 
 void				initialize_stack(int *arr, t_stack *stack);
@@ -55,6 +55,8 @@ void				stack_delone(t_stack *lst);
 void				stack_clear(t_stack **lst);
 void				print_stack(t_stack *stack, int state);
 void				print_stacks(t_stack *stack_a, t_stack *stack_b);
+int					stack_max_value(t_stack *stack);
+int					stack_min_value(t_stack *stack);
 
 // -------------------------------- PARSER -------------------------------- //
 int					*parse_arg_two(char *argv, int *arr_size);

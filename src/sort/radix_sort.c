@@ -6,57 +6,48 @@
 /*   By: yinhong <yinhong@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 20:01:03 by yinhong           #+#    #+#             */
-/*   Updated: 2024/07/06 12:02:16 by yinhong          ###   ########.fr       */
+/*   Updated: 2024/07/07 10:48:08 by yinhong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-void	radix_sort(t_stack **stack_a, t_stack **stack_b)
+void radix_sort(t_stack **stack_a, t_stack **stack_b)
 {
-	int		max;
-	int		max_bits;
-	int		current_bit;
-	t_stack	*first;
-
-	first = NULL;
-	max = stack_max_value(*stack_a);
-	max_bits = count_bits(max);
-	current_bit = 0;
-	while (current_bit < max_bits)
-	{
-		while (1)
-		{
-			if (*stack_a == first)
-				break ;
-			if (get_bit((*stack_a)->value, current_bit) == 0)
-				pb(stack_a, stack_b);
-			else
-			{
-				if (first == NULL)
-					first = *stack_a;
-				ra(stack_a);
-			}
-			// ft_printf("Current stack_a address:%p\n", *stack_a);
-		}
-		while (*stack_b)
-			pa(stack_a, stack_b);
-		first = NULL;
-		current_bit++;
-	}
+    int max = stack_max_value(*stack_a);
+    int min = stack_min_value(*stack_a);
+    int range = max - min;
+    int max_bits = count_bits((unsigned int)range);
+    int size = stack_size(*stack_a);
+    
+    for (int bit = 0; bit < max_bits; bit++)
+    {
+        int count = 0;
+        for (int i = 0; i < size; i++)
+        {
+            int num = (*stack_a)->value - min;
+            if ((num >> bit) & 1)
+                ra(stack_a);
+            else
+            {
+                pb(stack_a, stack_b);
+                count++;
+            }
+        }
+        while (count--)
+            pa(stack_a, stack_b);
+    }
 }
 
-int	count_bits(int i)
+int count_bits(unsigned int num)
 {
-	int	bits;
-
-	bits = 0;
-	while (i)
-	{
-		i /= 2;
-		bits++;
-	}
-	return (bits);
+    int bits = 0;
+    while (num)
+    {
+        num >>= 1;
+        bits++;
+    }
+    return bits;
 }
 
 int	get_bit(int i, int bit_requested)
