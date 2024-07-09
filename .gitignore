@@ -4,5 +4,8 @@ push_swap
 /.vscode
 /obj
 checker_Mac
+checker_linux
 result.txt
 src/ft_atoi_exit.c
+/push_swap_visualizer
+/Push-Swap-Tester
