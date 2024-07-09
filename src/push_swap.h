@@ -16,12 +16,8 @@
 # include "../ft_printf/ft_printf.h"
 # include "../libft/libft.h"
 # include <assert.h>
-# define TRUE 1
 # define FALSE 0
-
-# define BEFORE 0
-# define AFTER 1
-# define NONE 2
+# define TRUE 1
 
 # define INCLUDES_NON_DIGITS 4
 # define INPUT_NOT_FOUND 5
@@ -33,7 +29,7 @@ typedef struct s_stack
 	struct s_stack	*next;
 }					t_stack;
 
-int count_bits(unsigned int num);
+int					count_bits(unsigned int num);
 int					get_bit(int i, int bit_requested);
 void				sort(t_stack **stack);
 void				sort_small(t_stack **a, t_stack **b);

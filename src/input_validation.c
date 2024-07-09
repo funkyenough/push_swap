@@ -25,8 +25,8 @@ int	are_digits(char *str)
 
 int	has_duplicates(int arr_size, int *intarr)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = 0;
 	while (i < arr_size)

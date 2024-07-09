@@ -26,20 +26,15 @@ int	main(int argc, char **argv)
 	arr_size = 0;
 	intarr = NULL;
 	intarr = parse_input(argc, argv, intarr, &arr_size);
-	// for (int i = 0; i < arr_size; i++) {
-	// 	ft_printf("%d ", intarr[i]);
-	// }
-	// ft_printf("\n");
 	if (has_duplicates(arr_size, intarr))
 	{
-		// ft_printf("Error: Array has duplicates.\n");
+		ft_printf("Error: Array has duplicates.\n");
 		return (1);
 	}
 	index = get_index(intarr, arr_size);
 	stack = create_stack(arr_size);
 	initialize_stack(index, stack);
 	sort(&stack);
-	// print_stack(stack, AFTER);
 	stack_clear(&stack);
 	free(intarr);
 	free(index);

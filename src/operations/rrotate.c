@@ -37,10 +37,3 @@ void	rrb(t_stack **b)
 	rrotate(b);
 	ft_printf("rrb\n");
 }
-
-void	rrr(t_stack **a, t_stack **b)
-{
-	rra(a);
-	rrb(b);
-	ft_printf("rrr\n");
-}

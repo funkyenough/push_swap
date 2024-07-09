@@ -34,10 +34,3 @@ void	sb(t_stack **b)
 	swap(b);
 	ft_printf("sb\n");
 }
-
-void	ss(t_stack **a, t_stack **b)
-{
-	sa(a);
-	sb(b);
-	ft_printf("ss\n");
-}

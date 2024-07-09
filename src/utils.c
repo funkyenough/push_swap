@@ -1,24 +1,36 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yinhong <yinhong@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/07/09 14:35:36 by yinhong           #+#    #+#             */
+/*   Updated: 2024/07/09 14:35:37 by yinhong          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 void	swap_array(int *a, int *b)
 {
-	int c;
+	int	c;
+
 	c = *a;
 	*a = *b;
 	*b = c;
 }
 
-int *arrange_index(int *intarr, int size)
+int	*arrange_index(int *intarr, int size)
 {
-	int *tmp;
-	int i;
-	int j;
+	int	*tmp;
+	int	i;
+	int	j;
 
 	i = 0;
-
 	tmp = malloc(sizeof(int) * size);
 	if (!tmp)
-		return NULL;
+		return (NULL);
 	while (i < size)
 	{
 		tmp[i] = intarr[i];
@@ -36,24 +48,24 @@ int *arrange_index(int *intarr, int size)
 		}
 		i++;
 	}
-	return tmp;
+	return (tmp);
 }
 
-int *get_index(int *intarr, int size)
+int	*get_index(int *intarr, int size)
 {
-	int *index;
-	int *sorted;
-	int i;
-	int j;
+	int	*index;
+	int	*sorted;
+	int	i;
+	int	j;
 
 	sorted = arrange_index(intarr, size);
 	if (sorted == NULL)
-		return NULL;
+		return (NULL);
 	index = (int *)malloc(sizeof(int) * size);
 	if (index == NULL)
 	{
 		free(sorted);
-		return NULL;
+		return (NULL);
 	}
 	i = 0;
 	while (i < size)
@@ -64,14 +76,14 @@ int *get_index(int *intarr, int size)
 			if (sorted[i] == intarr[j])
 			{
 				index[j] = i;
-				break;
+				break ;
 			}
 			j++;
 		}
 		i++;
 	}
 	free(sorted);
-	return index;
+	return (index);
 }
 
 // int main() {
@@ -90,7 +102,7 @@ int *get_index(int *intarr, int size)
 //     sorted = arrange_index(intarr, size);
 //     if (sorted == NULL) {
 //         ft_printf("Failed to sort the array.\n");
-//         return 1;
+//         return (1);
 //     }
 
 //     ft_printf("Sorted array:\n");
@@ -103,7 +115,7 @@ int *get_index(int *intarr, int size)
 //     if (index == NULL) {
 //         ft_printf("Failed to get index array.\n");
 //         free(sorted); // Clean up allocated memory
-//         return 1;
+//         return (1);
 //     }
 
 //     ft_printf("Index array:\n");
@@ -115,5 +127,5 @@ int *get_index(int *intarr, int size)
 //     free(sorted); // Clean up allocated memory
 //     free(index); // Clean up allocated memory
 
-//     return 0;
+//     return (0);
 // }

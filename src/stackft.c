@@ -73,7 +73,8 @@ int	stack_size(t_stack *lst)
 
 t_stack	*stack_new(int value)
 {
-	t_stack *node;
+	t_stack	*node;
+
 	node = (t_stack *)malloc(sizeof(t_stack));
 	if (!node)
 		return (NULL);
